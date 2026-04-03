@@ -16,7 +16,9 @@ host = "localhost"
 database = "smita_database"
 
 # Create SQLAlchemy engine
-engine = create_engine(f"mysql+pymysql://{username}:{password}@{host}/{database}")
+#engine = create_engine(f"mysql+pymysql://{username}:{password}@{host}/{database}")
+
+engine = create_engine("mysql+pymysql://root:aadi123@127.0.0.1:3306/smita_database")
 
 # Run query with pandas to get both score & userId for Visualisation using MATLABLIB
 df_visualisation = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURDATE()", engine)
