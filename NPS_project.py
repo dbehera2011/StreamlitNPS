@@ -10,10 +10,10 @@ st.title("NPS Calculator!")
 st.write("Today's NPS for the company is: XX.XXXX")
 
 # Replace with your actual credentials
-username = "root"
-password = "aadi123"
-host = "localhost" 
-database = "smita_database"
+#username = "root"
+#password = "aadi123"
+#host = "localhost" 
+#database = "smita_database"
 
 # Create SQLAlchemy engine
 #engine = create_engine(f"mysql+pymysql://{username}:{password}@{host}/{database}")
