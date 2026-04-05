@@ -15,37 +15,54 @@ st.title("NPS Calculator!")
 conn = st.connection("neon", type="sql")
 
 # Perform query.
-df = conn.query('SELECT * FROM survey;')
-st.write(df)
+df = conn.query('SELECT user_id, score FROM survey WHERE date = CURDATE()')
+st.write("Scores for Today ", df_visualisation)
+
+# Get today's date
+today = datetime.date.today()
+
+fig, ax = plt.subplots()
+ax.plot(df_visualisation.user_id, df_visualisation.score) 
+ax.set_ylabel('Score')
+ax.set_xlabel('User ID')
+ax.grid()
+#Python’s f‑strings, short for formatted string literals.
+ax.set_title(f"Today's User Ratings ({today})")
+st.pyplot(fig)
+
+#Run query with pandas for NPS calculation
+df_nps = pd.read_sql("SELECT score FROM survey WHERE date = CURDATE()")
+
+# Convert to NumPy array
+data = df_nps.to_numpy()
+
+# Save as .npy file
+np.save("survey.npy", data)
+
+# Later, load it back with np.load
+score = np.load("survey.npy", allow_pickle = True)
+len(score)
+
+#Calculate Detractor %
+detractors = score[score<=6]
+len(detractors)
+percentage_detractors = (len(detractors)/len(score))*100
+
+#Calculate Promoter %
+promoters = score[score>=9]
+len(promoters)
+percentage_promoters = (len(promoters)/len(score))*100
+
+#NPS CAlculation
+NPS = percentage_promoters - percentage_detractors
+st.write("Today's NPS for the company is", NPS)
 
 
 
-################################################################################################
-# Connect to local MySQL
-# conn = mysql.connector.connect(
-#     host="127.0.0.1",       # or "127.0.0.1"
-#     user="root",  
-#     port=3306,         # replace with your MySQL username
-#     password="aadi123",  # replace with your MySQL password
-#     database="smita_database"   # replace with your database name
-# )
-# cursor = conn.cursor()
-
-# # Run a query
-# cursor.execute("SELECT * FROM survey;")
-# rows = cursor.fetchall()
-
-# # Convert to DataFrame for Streamlit display
-# df = pd.DataFrame(rows, columns=[i[0] for i in cursor.description])
-# st.title("MySQL Local DB Connection")
-# st.dataframe(df)
-# Close connection when done
-# cursor.close()
-# conn.close()
-
-###################################################################################################
 
 
+
+##########################################################################################
 # engine = create_engine("mysql+pymysql://root:aadi123@127.0.0.1:3306/smita_database")
 
 # #Run query with pandas to get both score & userId for Visualisation using MATLABLIB
