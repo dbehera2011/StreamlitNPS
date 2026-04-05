@@ -15,7 +15,8 @@ st.title("NPS Calculator!")
 conn = st.connection("neon", type="sql")
 
 # Perform query.
-df = conn.query('SELECT user_id, score FROM survey WHERE date = CURRENT_DATE')
+df = conn.query('SELECT * FROM survey WHERE date = CURRENT_DATE')
+
 st.write("Scores for Today ", df)
 
 # Get today's date
