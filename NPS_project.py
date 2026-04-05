@@ -11,8 +11,9 @@ st.title("NPS Calculator!")
 
 # Connect to local MySQL
 conn = mysql.connector.connect(
-    host="localhost",       # or "127.0.0.1"
-    user="root",            # replace with your MySQL username
+    host="127.0.0.1",       # or "127.0.0.1"
+    user="root",  
+    port=3306          # replace with your MySQL username
     password="aadi123",  # replace with your MySQL password
     database="smita_database"   # replace with your database name
 )
