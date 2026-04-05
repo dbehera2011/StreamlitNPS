@@ -6,6 +6,8 @@ from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import datetime
 import mysql.connector
+import pymysql
+pymysql.install_as_MySQLdb()
 
 st.title("NPS Calculator!")
 
