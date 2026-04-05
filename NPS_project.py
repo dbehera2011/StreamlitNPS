@@ -31,7 +31,7 @@ ax.set_title(f"Today's User Ratings ({today})")
 st.pyplot(fig)
 
 #Run query with pandas for NPS calculation
-df_nps = pd.read_sql("SELECT score FROM survey WHERE date = CURRENT_DATE")
+df_nps = pd.read_sql("SELECT score FROM survey WHERE date = CURRENT_DATE", conn)
 
 # Convert to NumPy array
 data = df_nps.to_numpy()
