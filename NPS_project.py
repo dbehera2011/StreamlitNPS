@@ -33,6 +33,7 @@ st.pyplot(fig)
 
 #Run query with pandas for NPS calculation
 df_nps = pd.read_sql("SELECT score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
+st.write("Scores for Today ", df_nps)
 
 # Convert to NumPy array
 data = df_nps.to_numpy()
