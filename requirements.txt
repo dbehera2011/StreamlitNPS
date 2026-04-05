@@ -6,4 +6,4 @@ sqlalchemy
 datetime
 pymysql
 mysql.connector
-import pymysql
+psycopg2-binary
