@@ -22,7 +22,7 @@ st.write("Scores for Today ", df_visualisation)
 today = datetime.date.today()
 
 fig, ax = plt.subplots()
-ax.plot(df_visualisation.user_id, df_visualisation.score) 
+ax.plot(df.user_id, df.score) 
 ax.set_ylabel('Score')
 ax.set_xlabel('User ID')
 ax.grid()
