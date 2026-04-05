@@ -20,11 +20,9 @@ conn = st.connection("neon", type="sql")
 #Run query with pandas for NPS calculation
 df_nps = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
 
-
-st.write("Scores for Today ", df_nps)
-
 # Get today's date
 today = datetime.date.today()
+st.write("Scores for Today ", df_nps)
 
 fig, ax = plt.subplots()
 ax.plot(df_nps.user_id, df_nps.score) 
