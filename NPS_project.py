@@ -12,10 +12,14 @@ pymysql.install_as_MySQLdb()
 st.title("NPS Calculator!")
 
 # Initialize connection.
-conn = st.connection('mysql', type='sql')
+conn = st.connection("neon", type="sql")
 
 # Perform query.
-df = conn.query('SELECT * from survey;')
+df = conn.query('SELECT * FROM survey;', ttl="10m")
+
+# Print results.
+for row in df.itertuples():
+    st.write(f"{row.user_id} has a :{row.score}:")
 
 ################################################################################################
 # Connect to local MySQL
