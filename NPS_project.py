@@ -16,7 +16,7 @@ conn = st.connection("neon", type="sql")
 
 # Perform query.
 df = conn.query('SELECT user_id, score FROM survey WHERE date = CURRENT_DATE')
-st.write("Scores for Today ", df_visualisation)
+st.write("Scores for Today ", df)
 
 # Get today's date
 today = datetime.date.today()
