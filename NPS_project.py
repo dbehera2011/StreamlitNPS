@@ -15,11 +15,10 @@ st.title("NPS Calculator!")
 conn = st.connection("neon", type="sql")
 
 # Perform query.
-df = conn.query('SELECT * FROM survey;', ttl="10m")
+df = conn.query('SELECT * FROM survey;')
+st.write(df)
 
-# Print results.
-for row in df.itertuples():
-    st.write(f"{row.user_id} has a :{row.score}:")
+
 
 ################################################################################################
 # Connect to local MySQL
