@@ -15,24 +15,25 @@ st.title("NPS Calculator!")
 conn = st.connection("neon", type="sql")
 
 # Perform query.
-df = conn.query('SELECT user_id, score FROM survey WHERE date = CURRENT_DATE')
+#df = conn.query('SELECT user_id, score FROM survey WHERE date = CURRENT_DATE')
 
-st.write("Scores for Today ", df)
+#Run query with pandas for NPS calculation
+df_nps = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
+
+
+st.write("Scores for Today ", df_nps)
 
 # Get today's date
 today = datetime.date.today()
 
 fig, ax = plt.subplots()
-ax.plot(df.user_id, df.score) 
+ax.plot(df_nps.user_id, df_nps.score) 
 ax.set_ylabel('Score')
 ax.set_xlabel('User ID')
 ax.grid()
 #Python’s f‑strings, short for formatted string literals.
 ax.set_title(f"Today's User Ratings ({today})")
 st.pyplot(fig)
-
-#Run query with pandas for NPS calculation
-df_nps = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
 
 # Convert to NumPy array
 data = df_nps.to_numpy()
