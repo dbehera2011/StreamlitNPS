@@ -7,4 +7,3 @@ datetime
 pymysql
 mysql.connector
 import pymysql
-pymysql.install_as_MySQLdb()
