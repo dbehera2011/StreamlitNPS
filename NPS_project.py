@@ -22,7 +22,7 @@ df_nps = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DAT
 
 # Get today's date
 today = datetime.date.today()
-st.write("Scores for Today ({today})", df_nps)
+st.write(f"Scores for Today ({today})", df_nps)
 
 fig, ax = plt.subplots()
 ax.plot(df_nps.user_id, df_nps.score) 
