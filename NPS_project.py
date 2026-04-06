@@ -25,7 +25,7 @@ df_nps_today = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRE
 
 # Get today's date
 today = datetime.date.today()
-st.write(f"Scores for Today ({today})", df_nps_today)
+#st.write(f"Scores for Today ({today})", df_nps_today)
 
 fig, ax = plt.subplots()
 ax.plot(df_nps_today.user_id, df_nps_today.score) 
@@ -34,7 +34,7 @@ ax.set_xlabel('User ID')
 ax.grid()
 #Python’s f‑strings, short for formatted string literals.
 ax.set_title(f"Today's User Ratings ({today})")
-st.pyplot(fig)
+#st.pyplot(fig)
 
 # Convert to NumPy array
 data = df_nps_today.score.to_numpy()
