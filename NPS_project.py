@@ -76,11 +76,11 @@ def assign_user_type(score):
 conn1 = st.connection("neon", type="sql")
 df1 = pd.read_sql("SELECT * FROM survey", con=conn1.engine)
 
-
+#new column added user_type
 df1['user_type'] = df1['score'].apply(assign_user_type)
-#df1.to_sql(name = 'survey', con=conn1.engine)
-
 st.write("df_nps_today new column: ", df1)
+
+st.write(df['user_type'].value_counts())
 
 
 
