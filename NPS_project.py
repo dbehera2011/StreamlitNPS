@@ -60,11 +60,13 @@ percentage_promoters = (len(promoters)/len(score_file))*100
 NPS = percentage_promoters - percentage_detractors
 st.write("Today's NPS for the company is", NPS)
 
-*********************************************************
+
+
+#######################################################################
 #1. add new column user_type
 #	promoter>=9, detractor<=6, passives<=6 &  >=9
 #2. Draw the graph bar chat using Seaborn
-*********************************************************
+#######################################################################
 def assign_user_type(score):
   if score <= 6: return 'detractor'
   elif hour >= 9: return 'promoter'
