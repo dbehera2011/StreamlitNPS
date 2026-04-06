@@ -42,21 +42,21 @@ st.write("data: ", data)
 np.save("survey.npy", data)
 
 # Later, load it back with np.load
-score = np.load("survey.npy", allow_pickle = True)
-len(score)
-st.write("score: ", score)
+score_file = np.load("survey.npy", allow_pickle = True)
+len(score_file)
+st.write("score_file: ", score_file)
 
 #Calculate Detractor %
-detractors = score[score<=6]
+detractors = score_file[score_file.score<=6]
 st.write("detractors: ", detractors)
 len(detractors)
-percentage_detractors = (len(detractors)/len(score))*100
+percentage_detractors = (len(detractors)/len(score_file))*100
 
 #Calculate Promoter %
-promoters = score[score>=9]
+promoters = score_file[score_file.score>=9]
 len(promoters)
 st.write("promoters: ", promoters)
-percentage_promoters = (len(promoters)/len(score))*100
+percentage_promoters = (len(promoters)/len(score_file))*100
 
 #NPS CAlculation
 NPS = percentage_promoters - percentage_detractors
