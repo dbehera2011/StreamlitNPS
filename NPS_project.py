@@ -8,6 +8,8 @@ import datetime
 import mysql.connector
 import pymysql
 pymysql.install_as_MySQLdb()
+import seaborn as sns
+
 
 st.title("NPS Calculator!")
 
@@ -57,3 +59,23 @@ percentage_promoters = (len(promoters)/len(score_file))*100
 #NPS CAlculation
 NPS = percentage_promoters - percentage_detractors
 st.write("Today's NPS for the company is", NPS)
+
+*********************************************************
+#1. add new column user_type
+#	promoter>=9, detractor<=6, passives<=6 &  >=9
+#2. Draw the graph bar chat using Seaborn
+*********************************************************
+def assign_user_type(score):
+  if score <= 6: return 'detractor'
+  elif hour >= 9: return 'promoter'
+  else: return 'passives'
+
+df_nps_today['user_type'] = df_nps_today['score'].apply(assign_user_type)
+df_nps_today.to_sql("survey", conn, if_exists="replace", index=False)
+
+st.write("df_nps_today new column: ", df_nps_today)
+
+
+
+
+
