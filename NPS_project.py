@@ -19,14 +19,14 @@ df = conn.query('SELECT * FROM survey')
 st.write(df)
 
 #Run query with pandas for NPS calculation
-df_nps = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
+df_nps_today = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
 
 # Get today's date
 today = datetime.date.today()
-st.write(f"Scores for Today ({today})", df_nps)
+st.write(f"Scores for Today ({today})", df_nps_today)
 
 fig, ax = plt.subplots()
-ax.plot(df_nps.user_id, df_nps.score) 
+ax.plot(df_nps_today.user_id, df_nps_today.score) 
 ax.set_ylabel('Score')
 ax.set_xlabel('User ID')
 ax.grid()
@@ -35,8 +35,7 @@ ax.set_title(f"Today's User Ratings ({today})")
 #st.pyplot(fig)
 
 # Convert to NumPy array
-data = df_nps.score.to_numpy()
-st.write("data: ", data)
+data = df_nps_today.score.to_numpy()
 
 # Save as .npy file
 np.save("survey.npy", data)
@@ -44,18 +43,15 @@ np.save("survey.npy", data)
 # Later, load it back with np.load
 score_file = np.load("survey.npy", allow_pickle = True)
 len(score_file)
-st.write("score_file: ", score_file)
 
 #Calculate Detractor %
 detractors = score_file[score_file<=6]
-st.write("detractors: ", detractors)
 len(detractors)
 percentage_detractors = (len(detractors)/len(score_file))*100
 
 #Calculate Promoter %
 promoters = score_file[score_file>=9]
 len(promoters)
-st.write("promoters: ", promoters)
 percentage_promoters = (len(promoters)/len(score_file))*100
 
 #NPS CAlculation
