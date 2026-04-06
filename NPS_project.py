@@ -72,10 +72,18 @@ def assign_user_type(score):
   elif score >= 9: return 'promoter'
   else: return 'passives'
 
-df_nps_today['user_type'] = df_nps_today['score'].apply(assign_user_type)
-df_nps_today.to_sql("survey", conn, if_exists="replace", index=False)
+# Example for SQLite
+engine = create_engine("sqlite:///smita_database.db")
 
-st.write("df_nps_today new column: ", df_nps_today)
+# Read table into DataFrame
+df1 = pd.read_sql("survey", engine)
+
+df1['user_type'] = df1['score'].apply(assign_user_type)
+df1.to_sql("survey", engine, if_exists="replace", index=False)
+
+st.write("df_nps_today new column: ", df1)
+
+
 
 
 
