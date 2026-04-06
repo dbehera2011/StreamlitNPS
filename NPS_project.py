@@ -46,13 +46,18 @@ len(score)
 
 #Calculate Detractor %
 detractors = score[score<=6]
+st.write("detractors: ", detractors)
 len(detractors)
 percentage_detractors = (len(detractors)/len(score))*100
+st.write("percentage_detractors: ", percentage_detractors)
 
 #Calculate Promoter %
 promoters = score[score>=9]
 len(promoters)
+st.write("promoters: ", promoters)
 percentage_promoters = (len(promoters)/len(score))*100
+st.write("percentage_promoters: ", percentage_promoters)
+
 
 #NPS CAlculation
 NPS = percentage_promoters - percentage_detractors
