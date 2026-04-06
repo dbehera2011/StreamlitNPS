@@ -19,7 +19,7 @@ df = conn.query('SELECT * FROM survey')
 st.write(df)
 
 #Run query with pandas for NPS calculation
-df_nps = pd.read_sql("SELECT * FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
+df_nps = pd.read_sql("SELECT score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
 
 # Get today's date
 today = datetime.date.today()
