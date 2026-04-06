@@ -18,7 +18,7 @@ conn = st.connection("neon", type="sql")
 
 # Perform query.
 df = conn.query('SELECT * FROM survey')
-st.write(df)
+#st.write(df)
 
 #Run query with pandas for NPS calculation
 df_nps_today = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
@@ -58,7 +58,7 @@ percentage_promoters = (len(promoters)/len(score_file))*100
 
 #NPS CAlculation
 NPS = percentage_promoters - percentage_detractors
-st.write("Today's NPS for the company is", NPS)
+#st.write("Today's NPS for the company is", NPS)
 
 
 
@@ -73,10 +73,9 @@ def assign_user_type(score):
   else: return 'passives'
 
 # Example for SQLite
-engine = create_engine("postgresql+psycopg2://")
+conn1 = st.connection("neon", type="sql")
+df1 = pd.read_sql("SELECT * FROM survey", con=conn1.engine)
 
-# Read table into DataFrame
-df1 = pd.read_sql("survey", con=conn.engine)
 
 df1['user_type'] = df1['score'].apply(assign_user_type)
 df1.to_sql("survey", engine, if_exists="replace", index=False)
