@@ -73,10 +73,10 @@ def assign_user_type(score):
   else: return 'passives'
 
 # Example for SQLite
-engine = create_engine("sqlite:///smita_database.db")
+engine = create_engine("neon:///smita_database.db")
 
 # Read table into DataFrame
-df1 = pd.read_sql("survey", engine)
+df1 = pd.read_sql("survey", con=conn.engine)
 
 df1['user_type'] = df1['score'].apply(assign_user_type)
 df1.to_sql("survey", engine, if_exists="replace", index=False)
