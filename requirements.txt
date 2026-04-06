@@ -7,3 +7,4 @@ datetime
 pymysql
 mysql.connector
 psycopg2-binary
+seaborn
