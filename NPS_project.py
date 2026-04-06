@@ -56,8 +56,4 @@ percentage_promoters = (len(promoters)/len(score_file))*100
 
 #NPS CAlculation
 NPS = percentage_promoters - percentage_detractors
-#st.write("Today's NPS for the company is", NPS)
-
-
-with st.popover("Check Today's NPS"):
-    st.markdown("👋Today's NPS for the company is", NPS)
+st.write("Today's NPS for the company is", NPS)
