@@ -80,8 +80,7 @@ df1 = pd.read_sql("SELECT * FROM survey", con=conn1.engine)
 df1['user_type'] = df1['score'].apply(assign_user_type)
 st.write("df_nps_today new column: ", df1)
 
- df2 = df1['user_type'].value_counts()
-
+df2 = df1['user_type'].value_counts()
 st.write(df2)
 
 
