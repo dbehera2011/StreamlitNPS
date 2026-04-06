@@ -32,7 +32,7 @@ ax.set_xlabel('User ID')
 ax.grid()
 #Python’s f‑strings, short for formatted string literals.
 ax.set_title(f"Today's User Ratings ({today})")
-#st.pyplot(fig)
+st.pyplot(fig)
 
 # Convert to NumPy array
 data = df_nps_today.score.to_numpy()
@@ -56,4 +56,8 @@ percentage_promoters = (len(promoters)/len(score_file))*100
 
 #NPS CAlculation
 NPS = percentage_promoters - percentage_detractors
-st.write("Today's NPS for the company is", NPS)
+#st.write("Today's NPS for the company is", NPS)
+
+
+with st.popover("Check Today's NPS"):
+    st.markdown("👋Today's NPS for the company is", NPS)
