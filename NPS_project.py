@@ -35,7 +35,7 @@ ax.set_title(f"Today's User Ratings ({today})")
 #st.pyplot(fig)
 
 # Convert to NumPy array
-data = df_nps.to_numpy()
+data = df_nps.score.to_numpy()
 st.write("data: ", data)
 
 # Save as .npy file
@@ -47,13 +47,13 @@ len(score_file)
 st.write("score_file: ", score_file)
 
 #Calculate Detractor %
-detractors = score_file[score_file.score<=6]
+detractors = score_file[score_file<=6]
 st.write("detractors: ", detractors)
 len(detractors)
 percentage_detractors = (len(detractors)/len(score_file))*100
 
 #Calculate Promoter %
-promoters = score_file[score_file.score>=9]
+promoters = score_file[score_file>=9]
 len(promoters)
 st.write("promoters: ", promoters)
 percentage_promoters = (len(promoters)/len(score_file))*100
