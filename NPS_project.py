@@ -36,6 +36,7 @@ st.pyplot(fig)
 
 # Convert to NumPy array
 data = df_nps.to_numpy()
+st.write("data: ", data)
 
 # Save as .npy file
 np.save("survey.npy", data)
@@ -43,6 +44,7 @@ np.save("survey.npy", data)
 # Later, load it back with np.load
 score = np.load("survey.npy", allow_pickle = True)
 len(score)
+st.write("score: ", score)
 
 #Calculate Detractor %
 detractors = score[score<=6]
