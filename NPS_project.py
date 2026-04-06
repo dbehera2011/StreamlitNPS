@@ -78,7 +78,7 @@ df1 = pd.read_sql("SELECT * FROM survey", con=conn1.engine)
 
 
 df1['user_type'] = df1['score'].apply(assign_user_type)
-# df1.to_sql("survey", engine, if_exists="replace", index=False)
+df1.to_sql(name = 'survey', con=conn1)
 
 # st.write("df_nps_today new column: ", df1)
 
