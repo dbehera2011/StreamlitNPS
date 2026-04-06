@@ -69,7 +69,7 @@ st.write("Today's NPS for the company is", NPS)
 #######################################################################
 def assign_user_type(score):
   if score <= 6: return 'detractor'
-  elif hour >= 9: return 'promoter'
+  elif score >= 9: return 'promoter'
   else: return 'passives'
 
 df_nps_today['user_type'] = df_nps_today['score'].apply(assign_user_type)
