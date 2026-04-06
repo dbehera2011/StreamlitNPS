@@ -73,7 +73,7 @@ def assign_user_type(score):
   else: return 'passives'
 
 # Example for SQLite
-engine = create_engine("neon:///smita_database.db")
+engine = create_engine("postgresql:///neodb.db")
 
 # Read table into DataFrame
 df1 = pd.read_sql("survey", con=conn.engine)
