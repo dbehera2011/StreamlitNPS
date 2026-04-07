@@ -81,10 +81,6 @@ df = pd.read_sql("SELECT * FROM nps_survey", con=conn.engine)
 df['user_type'] = df['score'].apply(assign_user_type)
 #st.write("df_nps_today new column: ", df)
 
-# df = df['user_type'].value_counts()
-# st.write(df)
-
-
 with conn.session as session:
     # 1. Add the column (if needed)
     session.execute(text("ALTER TABLE nps_survey ADD COLUMN IF NOT EXISTS user_type VARCHAR(255)"))
@@ -96,6 +92,8 @@ with conn.session as session:
         params
     )
     session.commit()
+
+st.write(df)
 
 
 
