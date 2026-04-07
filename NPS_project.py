@@ -18,7 +18,7 @@ conn = st.connection("neon", type="sql")
 
 # Perform query.
 df = conn.query('SELECT * FROM survey')
-#st.write(df)
+st.write(df)
 
 #Run query with pandas for NPS calculation
 df_nps_today = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
@@ -64,7 +64,7 @@ NPS = percentage_promoters - percentage_detractors
 
 #######################################################################
 #1. add new column user_type
-#	promoter>=9, detractor<=6, passives<=6 &  >=9
+#	promoter>=9, detractor<=6, passives<=6 & >=9
 #2. Draw the graph bar chat using Seaborn
 #######################################################################
 def assign_user_type(score):
@@ -83,6 +83,16 @@ st.write("df_nps_today new column: ", df1)
 df2 = df1['user_type'].value_counts()
 st.write(df2)
 
+# Create a Seaborn plot
+fig, ax = plt.subplots()
+ax.plot(df2.user_type, df2.score) 
+ax.set_ylabel('Count')
+ax.set_xlabel('User Type')
+ax.grid()
+sns.scatterplot(data=user_type, x="User_type", y="Count", hue="day", ax=ax)
+
+# Show the plot in Streamlit
+st.pyplot(fig)
 
 
 
