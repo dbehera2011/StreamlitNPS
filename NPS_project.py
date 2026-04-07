@@ -90,11 +90,11 @@ with conn.session as session:
     session.commit()
 
 # Update values from the DataFrame
-# for index, row in df.iterrows():
-#     conn.session.execute(text(
-#         "UPDATE nps_survey SET user_type = :val WHERE user_id = :id"),
-#         {"val": row["user_type"], "id": row["user_id"]}
-#     )
+for index, row in df.iterrows():
+    conn.session.execute(text(
+        "UPDATE nps_survey SET user_type = :val WHERE user_id = :id"),
+        {"val": row["user_type"], "id": row["user_id"]}
+    )
 conn.session.commit()
 
 # df = conn.query('SELECT * FROM nps_survey')
