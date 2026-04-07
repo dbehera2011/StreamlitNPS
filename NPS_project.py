@@ -101,7 +101,7 @@ st.write(df['user_type'].value_counts())
 fig, ax = plt.subplots()
 sns.countplot(data=df, x='user_type', ax=ax, palette='viridis')
 
-custom_colors = {"promoter": "green", "passive": "gray", "detractor": "red"}
+custom_colors = {"promoter": "green", "passives": "gray", "detractor": "red"}
 sns.countplot(data=df, x='user_type', palette=custom_colors, ax=ax)
 
 # 3. Add labels (Optional)
