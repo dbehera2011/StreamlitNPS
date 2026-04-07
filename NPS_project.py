@@ -86,7 +86,7 @@ st.write(df)
 # Write the DataFrame back to Neon
 df.to_sql("survey", conn.session.bind, if_exists="replace", index=False)
 
-rows = conn.query("SELECT id, new_column FROM users;")
+rows = conn.query("SELECT id, user_type FROM survey;")
 st.write(rows)
 
 
