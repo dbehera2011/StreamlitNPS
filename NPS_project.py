@@ -83,9 +83,11 @@ st.write("df_nps_today new column: ", df)
 df = df['user_type'].value_counts()
 st.write(df)
 
-cursor = conn.cursor()
-cursor.execute("ALTER TABLE survey ADD COLUMN user_type TEXT;")
-conn.commit()
+# Write the DataFrame back to Neon
+df.to_sql("survey", conn.session.bind, if_exists="replace", index=False)
+
+rows = conn.query("SELECT id, new_column FROM users;")
+st.write(rows)
 
 
 
