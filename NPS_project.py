@@ -2,13 +2,14 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import datetime
 import mysql.connector
 import pymysql
-pymysql.install_as_MySQLdb()
 import seaborn as sns
+from sqlalchemy import text
+from sqlalchemy import create_engine
+pymysql.install_as_MySQLdb()
 
 
 st.title("NPS Calculator!")
@@ -86,7 +87,10 @@ st.write(df)
 
 
 # Add the column to the table schema
-conn.session.execute("ALTER TABLE nps_survey ADD COLUMN user_type TEXT;")
+#conn.session.execute("ALTER TABLE nps_survey ADD COLUMN user_type TEXT;")
+
+conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN new_column TEXT;"))
+
 
 # Update values from the DataFrame
 for index, row in df.iterrows():
