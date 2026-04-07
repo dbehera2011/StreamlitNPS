@@ -79,7 +79,7 @@ df = pd.read_sql("SELECT * FROM nps_survey", con=conn.engine)
 
 #new column added user_type
 df['user_type'] = df['score'].apply(assign_user_type)
-st.write("df_nps_today new column: ", df)
+#st.write("df_nps_today new column: ", df)
 
 # df = df['user_type'].value_counts()
 # st.write(df)
@@ -93,6 +93,9 @@ conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN user_type VARCHAR(2
 #         {"val": row["user_type"], "id": row["user_id"]}
 #     )
 conn.session.commit()
+
+st.write("After Adding new column: ", df)
+
 
 
 
