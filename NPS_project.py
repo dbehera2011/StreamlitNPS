@@ -22,57 +22,11 @@ conn = st.connection("neon", type="sql")
 df = conn.query('SELECT * FROM nps_survey')
 st.write(df)
 
-#Run query with pandas for NPS calculation
-df_nps_today = pd.read_sql("SELECT user_id, score FROM nps_survey WHERE date = CURRENT_DATE ORDER BY user_id ASC", con=conn.engine)
-
-# Get today's date
-today = datetime.date.today()
-st.write(f"Scores for Today ({today})", df_nps_today)
-
-fig, ax = plt.subplots()
-ax.plot(df_nps_today.user_id, df_nps_today.score) 
-ax.set_ylabel('Score')
-ax.set_xlabel('User ID')
-ax.grid()
-#Python’s f‑strings, short for formatted string literals.
-ax.set_title(f"Today's User Ratings ({today})")
-ax.xaxis.set_major_locator(ticker.MaxNLocator(integer=True))
-st.pyplot(fig)
-
-# Convert to NumPy array
-data = df_nps_today.score.to_numpy()
-
-# Save as .npy file
-np.save("nps_survey.npy", data)
-
-# Later, load it back with np.load
-score_file = np.load("nps_survey.npy", allow_pickle = True)
-len(score_file)
-
-#Calculate Detractor %
-detractors = score_file[score_file<=6]
-len(detractors)
-percentage_detractors = (len(detractors)/len(score_file))*100
-
-#Calculate Promoter %
-promoters = score_file[score_file>=9]
-len(promoters)
-percentage_promoters = (len(promoters)/len(score_file))*100
-
-#NPS CAlculation
-NPS = percentage_promoters - percentage_detractors
-#st.write("Today's NPS for the company is", NPS)
-
-
-
 #######################################################################
 #REQUIREMENT 1:
 #add new column user_type
   #promoter >= 9, detractor <= 6, passives <= 6 & >= 9
 #Draw the graph bar chat using Seaborn
-
-#REQUIREMENT 2:
-
 #######################################################################
 def assign_user_type(score):
   if score <= 6: return 'detractor'
@@ -113,6 +67,57 @@ ax.set_ylabel("Count")
 
 # 4. Display in Streamlit
 st.pyplot(fig)
+
+#######################################################################
+#REQUIREMENT 2:
+#Show todays score on table 
+# Draw graph for todays nps
+# Calculate the NPS 
+#######################################################################
+#Run query with pandas for NPS calculation
+df_nps_today = pd.read_sql("SELECT user_id, score FROM nps_survey WHERE date = CURRENT_DATE ORDER BY user_id ASC", con=conn.engine)
+
+# Get today's date
+today = datetime.date.today()
+st.write(f"Scores for Today ({today})", df_nps_today)
+
+fig, ax = plt.subplots()
+ax.plot(df_nps_today.user_id, df_nps_today.score) 
+ax.set_ylabel('Score')
+ax.set_xlabel('User ID')
+ax.grid()
+#Python’s f‑strings, short for formatted string literals.
+ax.set_title(f"Today's User Ratings ({today})")
+ax.xaxis.set_major_locator(ticker.MaxNLocator(integer=True))
+st.pyplot(fig)
+
+# Convert to NumPy array
+data = df_nps_today.score.to_numpy()
+
+# Save as .npy file
+np.save("nps_survey.npy", data)
+
+# Later, load it back with np.load
+score_file = np.load("nps_survey.npy", allow_pickle = True)
+len(score_file)
+
+#Calculate Detractor %
+detractors = score_file[score_file<=6]
+len(detractors)
+percentage_detractors = (len(detractors)/len(score_file))*100
+
+#Calculate Promoter %
+promoters = score_file[score_file>=9]
+len(promoters)
+percentage_promoters = (len(promoters)/len(score_file))*100
+
+#NPS CAlculation
+NPS = percentage_promoters - percentage_detractors
+st.write("Today's NPS for the company is", NPS)
+
+
+
+
 
 
 
