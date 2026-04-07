@@ -86,6 +86,10 @@ df['user_type'] = df['score'].apply(assign_user_type)
 
 conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN user_type VARCHAR(255);"))
 
+# Check actual table schema
+check_cols = conn.query(text("SELECT * FROM nps_survey LIMIT 0"))
+st.write("Existing columns:", list(check_cols.columns))
+
 # Update values from the DataFrame
 # for index, row in df.iterrows():
 #     conn.session.execute(text(
@@ -94,8 +98,8 @@ conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN user_type VARCHAR(2
 #     )
 conn.session.commit()
 
-df = conn.query('SELECT * FROM nps_survey')
-st.write("After Adding new column: ", df)
+# df = conn.query('SELECT * FROM nps_survey')
+# st.write("After Adding new column: ", df)
 
 
 
