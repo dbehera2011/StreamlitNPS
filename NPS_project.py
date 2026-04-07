@@ -85,7 +85,7 @@ st.write(df2)
 
 # Create a Seaborn plot
 fig, ax = plt.subplots()
-sns.scatterplot(data=user_type, x="user_type", y="count", hue="day", ax=ax)
+sns.scatterplot(data=df2, x="user_type", y="count", hue="day", ax=ax)
 
 # Show the plot in Streamlit
 st.pyplot(fig)
