@@ -94,6 +94,7 @@ conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN user_type VARCHAR(2
 #     )
 conn.session.commit()
 
+df = conn.query('SELECT * FROM nps_survey')
 st.write("After Adding new column: ", df)
 
 
