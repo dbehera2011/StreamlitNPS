@@ -84,13 +84,12 @@ df = df['user_type'].value_counts()
 st.write(df)
 
 
-# fig, ax = plt.subplots()
-# ax.plot(df1.user_type) 
-# ax.set_ylabel('Count')
-# ax.set_xlabel('User TypeD')
-# ax.grid()
-# ax.set_title(f"Today's User Ratings ({today})")
-# st.pyplot(fig)
+fig, ax = plt.subplots()
+ax.plot(df.user_type) 
+ax.set_ylabel('Count')
+ax.set_xlabel('User TypeD')
+ax.grid()
+st.pyplot(fig)
 
 
 
