@@ -95,6 +95,10 @@ with conn.session as session:
 
 st.write(df)
 
+st.write(df['user_type'].value_counts())
+
+
+
 
 
 
