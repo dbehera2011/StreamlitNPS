@@ -83,11 +83,11 @@ st.write("df_nps_today new column: ", df1)
 df2 = df1['user_type'].value_counts()
 st.write(df2)
 
-# Create a Seaborn plot
-fig, ax = plt.subplots()
-#sns.scatterplot(data=df2.user_type, x="user_type", y="count", hue="user_type", ax=ax)
 
-sns.countplot(data = df2, x = df2["user_type"])
+sns.load_dataset(df2)
+
+
+
 
 # Show the plot in Streamlit
 st.pyplot(fig)
