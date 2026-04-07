@@ -81,16 +81,10 @@ df = pd.read_sql("SELECT * FROM nps_survey", con=conn.engine)
 df['user_type'] = df['score'].apply(assign_user_type)
 st.write("df_nps_today new column: ", df)
 
-df = df['user_type'].value_counts()
-st.write(df)
-
-
-
-# Add the column to the table schema
-#conn.session.execute("ALTER TABLE nps_survey ADD COLUMN user_type TEXT;")
+# df = df['user_type'].value_counts()
+# st.write(df)
 
 conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN new_column TEXT;"))
-
 
 # Update values from the DataFrame
 for index, row in df.iterrows():
