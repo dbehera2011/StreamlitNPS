@@ -84,12 +84,11 @@ df2 = df1['user_type'].value_counts()
 st.write(df2)
 
 
-sns.load_dataset("survey")
-
-
-
-
-# Show the plot in Streamlit
+fig, ax = plt.subplots()
+ax.plot(df2.user_type) 
+ax.set_ylabel('Count')
+ax.set_xlabel('User TypeD')
+ax.grid()
 st.pyplot(fig)
 
 
