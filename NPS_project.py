@@ -16,8 +16,7 @@ pymysql.install_as_MySQLdb()
 with st.container(border=True, horizontal_alignment="center"):  
   st.markdown(
     f"<h2 style='text-align: center; color: blue;'>NPS Calculator test</h2>", 
-    unsafe_allow_html=True
-  ;)
+    unsafe_allow_html=True)
 
 # Initialize connection.
 conn = st.connection("neon", type="sql")
