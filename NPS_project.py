@@ -13,8 +13,11 @@ from sqlalchemy import create_engine
 pymysql.install_as_MySQLdb()
 
 
-with st.container(border=True, horizontal_alignment="center"):
-  st.markdown("<h1 style='text-align: center;'>:blue[NPS Calculator!]</h1>", unsafe_allow_html=True)
+with st.container(border=True, horizontal_alignment="center"):  
+  st.markdown(
+    f"<h2 style='text-align: center; color: blue;'>NPS Calculator</h2>", 
+    unsafe_allow_html=True
+  )
 
 # Initialize connection.
 conn = st.connection("neon", type="sql")
