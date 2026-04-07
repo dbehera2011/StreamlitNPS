@@ -73,23 +73,24 @@ def assign_user_type(score):
   else: return 'passives'
 
 # Example for SQLite
-conn1 = st.connection("neon", type="sql")
-df1 = pd.read_sql("SELECT * FROM survey", con=conn1.engine)
+conn = st.connection("neon", type="sql")
+df = pd.read_sql("SELECT * FROM survey", con=conn.engine)
 
 #new column added user_type
-df1['user_type'] = df1['score'].apply(assign_user_type)
-st.write("df_nps_today new column: ", df1)
+df['user_type'] = df['score'].apply(assign_user_type)
+st.write("df_nps_today new column: ", df)
 
-df2 = df1['user_type'].value_counts()
-st.write(df2)
+df = df['user_type'].value_counts()
+st.write(df)
 
 
-fig, ax = plt.subplots()
-ax.plot(df2.user_type) 
-ax.set_ylabel('Count')
-ax.set_xlabel('User TypeD')
-ax.grid()
-st.pyplot(fig)
+# fig, ax = plt.subplots()
+# ax.plot(df1.user_type) 
+# ax.set_ylabel('Count')
+# ax.set_xlabel('User TypeD')
+# ax.grid()
+# ax.set_title(f"Today's User Ratings ({today})")
+# st.pyplot(fig)
 
 
 
