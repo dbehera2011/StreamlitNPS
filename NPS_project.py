@@ -84,21 +84,18 @@ df['user_type'] = df['score'].apply(assign_user_type)
 # df = df['user_type'].value_counts()
 # st.write(df)
 
-# 1. Add the column if it doesn't exist
+
 with conn.session as session:
+    # 1. Add the column (if needed)
     session.execute(text("ALTER TABLE nps_survey ADD COLUMN IF NOT EXISTS user_type VARCHAR(255)"))
-    session.commit()
-
-# Update values from the DataFrame
-for index, row in df.iterrows():
-    conn.session.execute(text(
-        "UPDATE nps_survey SET user_type = :val WHERE user_id = :id"),
-        {"val": row["user_type"], "id": row["user_id"]}
+    
+    # 2. Run the update in bulk (avoids hitting the pool limit)
+    params = [{"val": row["user_type"], "id": row["user_id"]} for _, row in df.iterrows()]
+    session.execute(
+        text("UPDATE nps_survey SET user_type = :val WHERE user_id = :id"),
+        params
     )
-conn.session.commit()
-
-# df = conn.query('SELECT * FROM nps_survey')
-# st.write("After Adding new column: ", df)
+    session.commit()
 
 
 
