@@ -92,7 +92,7 @@ conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN user_type VARCHAR(2
 #         "UPDATE nps_survey SET user_type = :val WHERE user_id = :id"),
 #         {"val": row["user_type"], "id": row["user_id"]}
 #     )
-# conn.session.commit()
+conn.session.commit()
 
 
 
