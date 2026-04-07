@@ -85,6 +85,19 @@ st.write(df)
 
 
 
+# Add the column to the table schema
+conn.session.execute("ALTER TABLE nps_survey ADD COLUMN user_type TEXT;")
+
+# Update values from the DataFrame
+for index, row in df.iterrows():
+    conn.session.execute(
+        "UPDATE nps_survey SET user_type = :val WHERE user_id = :id",
+        {"val": row["user_type"], "id": row["user_id"]}
+    )
+conn.session.commit()
+
+
+
 
 
 
