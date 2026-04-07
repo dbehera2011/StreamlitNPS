@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 pymysql.install_as_MySQLdb()
 
 
-with st.container(border=True):
+with st.container(border=True, horizontal_alignment="center"):
     st.markdown(":blue[NPS Calculator!]")
 
 # Initialize connection.
