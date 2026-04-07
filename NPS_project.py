@@ -17,11 +17,11 @@ st.title("NPS Calculator!")
 conn = st.connection("neon", type="sql")
 
 # Perform query.
-df = conn.query('SELECT * FROM survey')
+df = conn.query('SELECT * FROM nps_survey')
 st.write(df)
 
 #Run query with pandas for NPS calculation
-df_nps_today = pd.read_sql("SELECT user_id, score FROM survey WHERE date = CURRENT_DATE", con=conn.engine)
+df_nps_today = pd.read_sql("SELECT user_id, score FROM nps_survey WHERE date = CURRENT_DATE", con=conn.engine)
 
 # Get today's date
 today = datetime.date.today()
@@ -40,10 +40,10 @@ ax.set_title(f"Today's User Ratings ({today})")
 data = df_nps_today.score.to_numpy()
 
 # Save as .npy file
-np.save("survey.npy", data)
+np.save("nps_survey.npy", data)
 
 # Later, load it back with np.load
-score_file = np.load("survey.npy", allow_pickle = True)
+score_file = np.load("nps_survey.npy", allow_pickle = True)
 len(score_file)
 
 #Calculate Detractor %
@@ -74,7 +74,7 @@ def assign_user_type(score):
 
 # Example for SQLite
 conn = st.connection("neon", type="sql")
-df = pd.read_sql("SELECT * FROM survey", con=conn.engine)
+df = pd.read_sql("SELECT * FROM nps_survey", con=conn.engine)
 
 #new column added user_type
 df['user_type'] = df['score'].apply(assign_user_type)
