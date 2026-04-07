@@ -84,7 +84,7 @@ df2 = df1['user_type'].value_counts()
 st.write(df2)
 
 
-sns.load_dataset(df1.user_type)
+sns.load_dataset("survey")
 
 
 
