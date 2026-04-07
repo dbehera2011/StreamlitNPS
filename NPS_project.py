@@ -87,7 +87,7 @@ st.write(df2)
 fig, ax = plt.subplots()
 #sns.scatterplot(data=df2.user_type, x="user_type", y="count", hue="user_type", ax=ax)
 
-sns.countplot(data = df2, x = 'user_type')
+sns.countplot(data = df2, x = df2["user_type"])
 
 # Show the plot in Streamlit
 st.pyplot(fig)
