@@ -14,7 +14,7 @@ pymysql.install_as_MySQLdb()
 
 
 container = st.container(border=True)
-st.title("NPS Calculator!")
+container.write("NPS Calculator!")
 
 # Initialize connection.
 conn = st.connection("neon", type="sql")
