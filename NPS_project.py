@@ -13,8 +13,10 @@ from sqlalchemy import create_engine
 pymysql.install_as_MySQLdb()
 
 
+
 container = st.container(border=True)
-container.write("NPS Calculator!")
+container.write(st.title("NPS Calculator!"))
+
 
 # Initialize connection.
 conn = st.connection("neon", type="sql")
