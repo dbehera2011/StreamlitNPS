@@ -64,8 +64,9 @@ NPS = percentage_promoters - percentage_detractors
 
 
 #######################################################################
-#1. add new column user_type
-#	promoter>=9, detractor<=6, passives<=6 & >=9
+#REQUIREMENT 1:
+#add new column user_type
+#	promoter >= 9, detractor <= 6, passives <= 6 & >= 9
 #2. Draw the graph bar chat using Seaborn
 #######################################################################
 def assign_user_type(score):
@@ -94,13 +95,9 @@ with conn.session as session:
     session.commit()
 
 st.write(df)
-
 st.write(df['user_type'].value_counts())
 
-
 fig, ax = plt.subplots()
-sns.countplot(data=df, x='user_type', ax=ax, palette='viridis')
-
 custom_colors = {"promoter": "green", "passives": "gray", "detractor": "red"}
 sns.countplot(data=df, x='user_type', palette=custom_colors, ax=ax)
 
