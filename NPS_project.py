@@ -84,11 +84,10 @@ df['user_type'] = df['score'].apply(assign_user_type)
 # df = df['user_type'].value_counts()
 # st.write(df)
 
-conn.session.execute(text("ALTER TABLE nps_survey ADD COLUMN user_type VARCHAR(255);"))
-
-# Check actual table schema
-check_cols = conn.query("SELECT * FROM nps_survey")
-st.write("Existing columns:", list(check_cols.columns))
+# 1. Add the column if it doesn't exist
+with conn.session as session:
+    session.execute(text("ALTER TABLE nps_survey ADD COLUMN IF NOT EXISTS user_type VARCHAR(255)"))
+    session.commit()
 
 # Update values from the DataFrame
 # for index, row in df.iterrows():
