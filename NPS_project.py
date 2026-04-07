@@ -13,6 +13,7 @@ from sqlalchemy import create_engine
 pymysql.install_as_MySQLdb()
 
 
+container = st.container(border=True)
 st.title("NPS Calculator!")
 
 # Initialize connection.
@@ -22,12 +23,12 @@ conn = st.connection("neon", type="sql")
 df = conn.query('SELECT * FROM nps_survey')
 st.write(df)
 
-#######################################################################
+##############################################################################################################################################
 #REQUIREMENT 1:
 #add new column user_type
   #promoter >= 9, detractor <= 6, passives <= 6 & >= 9
 #Draw the graph bar chat using Seaborn
-#######################################################################
+##############################################################################################################################################
 def assign_user_type(score):
   if score <= 6: return 'detractor'
   elif score >= 9: return 'promoter'
@@ -68,12 +69,12 @@ ax.set_ylabel("Count")
 # 4. Display in Streamlit
 st.pyplot(fig)
 
-#######################################################################
+##############################################################################################################################################
 #REQUIREMENT 2:
 #Show todays score on table 
 # Draw graph for todays nps
 # Calculate the NPS 
-#######################################################################
+##############################################################################################################################################
 #Run query with pandas for NPS calculation
 df_nps_today = pd.read_sql("SELECT user_id, score FROM nps_survey WHERE date = CURRENT_DATE ORDER BY user_id ASC", con=conn.engine)
 
