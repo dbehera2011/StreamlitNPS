@@ -83,8 +83,9 @@ st.write("df_nps_today new column: ", df)
 df = df['user_type'].value_counts()
 st.write(df)
 
-
-sns.countplot(data =df, x = 'user_type')
+cursor = conn.cursor()
+cursor.execute("ALTER TABLE survey ADD COLUMN user_type TEXT;")
+conn.commit()
 
 
 
