@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import datetime
 import mysql.connector
 import pymysql
@@ -35,6 +36,7 @@ ax.set_xlabel('User ID')
 ax.grid()
 #Python’s f‑strings, short for formatted string literals.
 ax.set_title(f"Today's User Ratings ({today})")
+ax.xaxis.set_major_locator(ticker.MaxNLocator(integer=True))
 st.pyplot(fig)
 
 # Convert to NumPy array
