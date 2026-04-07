@@ -84,12 +84,7 @@ df = df['user_type'].value_counts()
 st.write(df)
 
 
-fig, ax = plt.subplots()
-ax.plot(df.user_type) 
-ax.set_ylabel('Count')
-ax.set_xlabel('User TypeD')
-ax.grid()
-st.pyplot(fig)
+sns.countplot(data =df, x = 'user_type')
 
 
 
