@@ -97,9 +97,10 @@ st.write(df)
 
 st.write(df['user_type'].value_counts())
 
-
 fig, ax = plt.subplots()
-sns.countplot(data=df, x='user_type', ax=ax, palette='viridis')
+custom_colors = {"promoter": "green", "passive": "gray", "detractor": "red"}
+sns.countplot(data=df, x='user_type', palette=custom_colors, ax=ax)
+
 # 3. Add labels (Optional)
 ax.set_title("Distribution of User Types")
 ax.set_xlabel("User Category")
