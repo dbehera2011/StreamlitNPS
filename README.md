@@ -9,8 +9,8 @@ https://appnps-2e7kd2fgnazyketfrs472f.streamlit.app/
 
 Framework Used:
 - Streamlit Community Cloud: https://share.streamlit.io/
-- NeonDB: https://console.neon.tech/app/projects/dry-sun-46488234?branchId=br-blue-bonus-ans13fie&database=neondb
-- Git: https://github.com/dbehera2011/StreamlitNPS
+- NeonDB
+- Github
 - VS Code
 - Command Prompt
 
