@@ -1,24 +1,45 @@
-About APP: 
-This app shows Net Promoter score for a business, displays data in tabular format & shows the Graphical representation of it. 
+This app shows no of Detractors &  No of Promoters based on rating provided by the user, then it calculates the Net Promoter score for a business, displays data in tabular format & shows the Graphical representation of it using **Streamlit**, Seaborn, matplotlib. It allows users to view a net promoter score for their company.
 
-App Architecture:
-Streamlit community cloud will have access to Github project & Neon Db to run the code & connect data source to query. 
+## 🚀 Features
 
-App Url:
-https://appnps-2e7kd2fgnazyketfrs472f.streamlit.app/
+* 📊 Real-time NPS value
+* 📉 Interactive charts using Seaborn
 
-Framework Used:
+---
+
+## 🛠️ Tech Stack
+
+* Python 3.12+
+*  MySQL
+* Streamlit
+* sqlalchemy 
+* Seaborn
+* pandas
+* Numpy
+* Matplotlib
+* pymysql
+  
+---
+## 🛠️ Framework
 - Streamlit Community Cloud: https://share.streamlit.io/
 - NeonDB
 - Github
 - VS Code
 - Command Prompt
 
-Concepts Used:
-- Python
-- MySQL Commands
-- Numpy
-- Panda
-- Matplotlib
-- Seaborn
-- Streamlit
+## 📂 Project Structure
+
+```
+StreamlitNPS/
+│── NPS_project.py
+│── requirements.txt
+│── README.md
+```
+
+---
+
+## 👨‍💻 Author
+
+Debasmita Behera
+
+---
